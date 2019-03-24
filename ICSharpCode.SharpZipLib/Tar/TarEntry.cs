@@ -280,8 +280,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			header.GroupId = 0;
 			header.Size = 0L;
 			header.ModTime = DateTime.UtcNow;
-            header.TypeFlag = flag ? TarHeader.LF_DIR : TarHeader.LF_NORMAL;
-            header.LinkName = string.Empty;
+			header.TypeFlag = (flag ? 53 : 48);
+			header.LinkName = string.Empty;
 			header.UserName = string.Empty;
 			header.GroupName = string.Empty;
 			header.DevMajor = 0;

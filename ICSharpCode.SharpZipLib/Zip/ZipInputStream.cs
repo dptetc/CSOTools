@@ -76,24 +76,24 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.entry.CompressionMethod = (CompressionMethod)this.method;
 			if ((this.flags & 8) == 0)
 			{
-				this.entry.Crc = ((long)num3 & 0xFFFFFFFFL);
-				this.entry.Size = (this.size & 0xFFFFFFFFL);
-				this.entry.CompressedSize = (this.csize & 0xFFFFFFFFL);
+				this.entry.Crc = ((long)num3 & (long)((ulong)-1));
+				this.entry.Size = (this.size & (long)((ulong)-1));
+				this.entry.CompressedSize = (this.csize & (long)((ulong)-1));
 				this.entry.CryptoCheckValue = (byte)(num3 >> 24 & 255);
 			}
 			else
 			{
 				if (num3 != 0)
 				{
-					this.entry.Crc = ((long)num3 & 0xFFFFFFFFL);
+					this.entry.Crc = ((long)num3 & (long)((ulong)-1));
 				}
 				if (this.size != 0L)
 				{
-					this.entry.Size = (this.size & 0xFFFFFFFFL);
+					this.entry.Size = (this.size & (long)((ulong)-1));
 				}
 				if (this.csize != 0L)
 				{
-					this.entry.CompressedSize = (this.csize & 0xFFFFFFFFL);
+					this.entry.CompressedSize = (this.csize & (long)((ulong)-1));
 				}
 				this.entry.CryptoCheckValue = (byte)(num2 >> 8 & 255u);
 			}
@@ -134,7 +134,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			{
 				throw new ZipException("Data descriptor signature not found");
 			}
-			this.entry.Crc = ((long)this.inputBuffer.ReadLeInt() & 0xFFFFFFFFL);
+			this.entry.Crc = ((long)this.inputBuffer.ReadLeInt() & (long)((ulong)-1));
 			if (this.entry.LocalHeaderRequiresZip64)
 			{
 				this.csize = this.inputBuffer.ReadLeLong();
@@ -157,7 +157,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 				this.ReadDataDescriptor();
 			}
 			this.size = 0L;
-			if (testCrc && (this.crc.Value & 0xFFFFFFFFL) != this.entry.Crc && this.entry.Crc != -1L)
+			if (testCrc && (this.crc.Value & (long)((ulong)-1)) != this.entry.Crc && this.entry.Crc != -1L)
 			{
 				throw new ZipException("CRC mismatch");
 			}

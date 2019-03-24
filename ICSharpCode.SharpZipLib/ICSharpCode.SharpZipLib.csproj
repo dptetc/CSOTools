@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5829116C-4EFD-40F9-AF0D-154F91B4720C}</ProjectGuid>
+    <ProjectGuid>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>ICSharpCode.SharpZipLib</RootNamespace>
     <AssemblyName>ICSharpCode.SharpZipLib</AssemblyName>

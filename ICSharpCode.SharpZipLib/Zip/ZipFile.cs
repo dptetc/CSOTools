@@ -1038,13 +1038,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		private void WriteLeLong(long value)
 		{
-			this.WriteLEInt((int)(value & 0xffffffff));
+			this.WriteLEInt((int)(value & (long)((ulong)-1)));
 			this.WriteLEInt((int)(value >> 32));
 		}
 
 		private void WriteLEUlong(ulong value)
 		{
-			this.WriteLEUint((uint)(value & 0xffffffff));
+			this.WriteLEUint((uint)(value & (ulong)-1));
 			this.WriteLEUint((uint)(value >> 32));
 		}
 
@@ -1179,15 +1179,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.WriteLEShort((int)((byte)entry.CompressionMethod));
 			this.WriteLEInt((int)entry.DosTime);
 			this.WriteLEInt((int)entry.Crc);
-			if (entry.IsZip64Forced() || entry.CompressedSize >= 0xffffffff)
+			if (entry.IsZip64Forced() || entry.CompressedSize >= (long)((ulong)-1))
 			{
 				this.WriteLEInt(-1);
 			}
 			else
 			{
-				this.WriteLEInt((int)(entry.CompressedSize & 0xffffffff));
+				this.WriteLEInt((int)(entry.CompressedSize & (long)((ulong)-1)));
 			}
-			if (entry.IsZip64Forced() || entry.Size >= 0xffffffff)
+			if (entry.IsZip64Forced() || entry.Size >= (long)((ulong)-1))
 			{
 				this.WriteLEInt(-1);
 			}
@@ -1205,15 +1205,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 			if (entry.CentralHeaderRequiresZip64)
 			{
 				zipExtraData.StartNewEntry();
-				if (entry.Size >= 0xffffffff || this.useZip64_ == UseZip64.On)
+				if (entry.Size >= (long)((ulong)-1) || this.useZip64_ == UseZip64.On)
 				{
 					zipExtraData.AddLeLong(entry.Size);
 				}
-				if (entry.CompressedSize >= 0xffffffff || this.useZip64_ == UseZip64.On)
+				if (entry.CompressedSize >= (long)((ulong)-1) || this.useZip64_ == UseZip64.On)
 				{
 					zipExtraData.AddLeLong(entry.CompressedSize);
 				}
-				if (entry.Offset >= 0xffffffff)
+				if (entry.Offset >= (long)((ulong)-1))
 				{
 					zipExtraData.AddLeLong(entry.Offset);
 				}
@@ -1240,7 +1240,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			{
 				this.WriteLEUint(0u);
 			}
-			if (entry.Offset >= 0xffffffff)
+			if (entry.Offset >= (long)((ulong)-1))
 			{
 				this.WriteLEUint(uint.MaxValue);
 			}
@@ -1859,8 +1859,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			{
 				throw new EndOfStreamException("End of stream");
 			}
-            return unchecked((ushort)((ushort)num | (ushort)(num2 << 8)));
-        }
+			return (ushort)num | (ushort)(num2 << 8);
+		}
 
 		private uint ReadLEUint()
 		{
@@ -1911,7 +1911,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 				this.comment_ = string.Empty;
 			}
 			bool flag = false;
-			if (num2 == 65535 || num3 == 65535 || num4 == 65535UL || num5 == 65535UL || num6 == 0xffffffff || num7 == 0xffffffff)
+			if (num2 == 65535 || num3 == 65535 || num4 == 65535UL || num5 == 65535UL || num6 == (ulong)-1 || num7 == (long)((ulong)-1))
 			{
 				flag = true;
 				long num9 = this.LocateBlockWithSignature(117853008, num, 0, 4096);
@@ -1973,9 +1973,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 				StreamUtils.ReadFully(this.baseStream_, array2, 0, num18);
 				string name = ZipConstants.ConvertToStringExt(num13, array2, num18);
 				ZipEntry zipEntry = new ZipEntry(name, versionRequiredToExtract, madeByInfo, (CompressionMethod)method);
-				zipEntry.Crc = (long)((ulong)num15 & 0xffffffffL);
-				zipEntry.Size = (num17 & 0xffffffffL);
-				zipEntry.CompressedSize = (num16 & 0xffffffffL);
+				zipEntry.Crc = (long)((ulong)num15 & (ulong)-1);
+				zipEntry.Size = (num17 & (long)((ulong)-1));
+				zipEntry.CompressedSize = (num16 & (long)((ulong)-1));
 				zipEntry.Flags = num13;
 				zipEntry.DosTime = (long)((ulong)num14);
 				zipEntry.ZipFileIndex = (long)num12;

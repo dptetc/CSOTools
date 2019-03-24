@@ -222,7 +222,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		public void AddLeLong(long toAdd)
 		{
-			this.AddLeInt((int)(toAdd & 0xffffffff));
+			this.AddLeInt((int)(toAdd & (long)((ulong)-1)));
 			this.AddLeInt((int)(toAdd >> 32));
 		}
 
@@ -245,7 +245,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public long ReadLong()
 		{
 			this.ReadCheck(8);
-			return ((long)this.ReadInt() & 0xffffffff) | (long)this.ReadInt() << 32;
+			return ((long)this.ReadInt() & (long)((ulong)-1)) | (long)this.ReadInt() << 32;
 		}
 
 		public int ReadInt()

@@ -201,11 +201,11 @@ namespace ICSharpCode.SharpZipLib.GZip
 				}));
 			}
 			uint num4 = (uint)((int)(array[4] & byte.MaxValue) | (int)(array[5] & byte.MaxValue) << 8 | (int)(array[6] & byte.MaxValue) << 16 | (int)array[7] << 24);
-			if (this.inf.TotalOut != num4)
+			if ((this.inf.TotalOut & (long)((ulong)-1)) != (long)((ulong)num4))
 			{
 				throw new GZipException("Number of bytes mismatch in footer");
 			}
-            this.eos = true;
+			this.eos = true;
 		}
 
 		protected Crc32 crc = new Crc32();

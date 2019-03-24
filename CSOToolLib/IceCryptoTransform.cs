@@ -101,7 +101,7 @@ namespace Nexon.CSO
 					for (int k = 0; k < 4; k++)
 					{
 						ushort currentKeyBuilder = keyBuilder[keyRotation + k & 3];
-						ushort bit = (ushort)(currentKeyBuilder & 1);
+						ushort bit = currentKeyBuilder & 1;
 						this.keySchedule[subKeyIndex, j % 3] = (this.keySchedule[subKeyIndex, j % 3] << 1 | (uint)bit);
 						keyBuilder[keyRotation + k & 3] = (ushort)(currentKeyBuilder >> 1 | (int)(bit ^ 1) << 15);
 					}

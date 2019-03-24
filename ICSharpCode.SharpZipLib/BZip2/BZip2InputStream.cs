@@ -615,8 +615,8 @@ namespace ICSharpCode.SharpZipLib.BZip2
 					}
 				}
 				this.rNToGo--;
-                this.z ^= (byte)((rNToGo == 1) ? 1 : 0);
-                this.j2 = 0;
+				this.z ^= ((this.rNToGo == 1) ? 1 : 0);
+				this.j2 = 0;
 				this.currentState = 4;
 				this.SetupRandPartC();
 				return;

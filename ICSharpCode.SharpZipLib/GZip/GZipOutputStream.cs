@@ -73,8 +73,8 @@ namespace ICSharpCode.SharpZipLib.GZip
 			{
 				this.state_ = GZipOutputStream.OutputState.Finished;
 				base.Finish();
-				uint num = (uint)(this.deflater_.TotalIn & 0xffffffff);
-				uint num2 = (uint)(this.crc.Value & 0xffffffff);
+				uint num = (uint)(this.deflater_.TotalIn & (long)((ulong)-1));
+				uint num2 = (uint)(this.crc.Value & (long)((ulong)-1));
 				byte[] array = new byte[]
 				{
 					(byte)num2,

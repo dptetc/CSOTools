@@ -254,7 +254,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		public void WriteEndOfCentralDirectory(long noOfEntries, long sizeEntries, long startOfCentralDirectory, byte[] comment)
 		{
-			if (noOfEntries >= 65535L || startOfCentralDirectory >= 0xffffffff || sizeEntries >= 0xffffffff)
+			if (noOfEntries >= 65535L || startOfCentralDirectory >= (long)((ulong)-1) || sizeEntries >= (long)((ulong)-1))
 			{
 				this.WriteZip64EndOfCentralDirectory(noOfEntries, sizeEntries, startOfCentralDirectory);
 			}
@@ -271,7 +271,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 				this.WriteLEShort((int)((short)noOfEntries));
 				this.WriteLEShort((int)((short)noOfEntries));
 			}
-			if (sizeEntries >= 0xffffffff)
+			if (sizeEntries >= (long)((ulong)-1))
 			{
 				this.WriteLEUint(uint.MaxValue);
 			}
@@ -279,7 +279,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			{
 				this.WriteLEInt((int)sizeEntries);
 			}
-			if (startOfCentralDirectory >= 0xffffffff)
+			if (startOfCentralDirectory >= (long)((ulong)-1))
 			{
 				this.WriteLEUint(uint.MaxValue);
 			}
@@ -356,8 +356,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		public void WriteLEUlong(ulong value)
 		{
-			this.WriteLEUint((uint)(value & 0xffffffff));
-            this.WriteLEUint((uint)(value >> 32));
+			this.WriteLEUint((uint)(value & (ulong)-1));
+			this.WriteLEUint((uint)(value >> 32));
 		}
 
 		public int WriteDataDescriptor(ZipEntry entry)

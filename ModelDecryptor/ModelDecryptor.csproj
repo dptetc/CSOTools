@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5829116C-4EFD-40F9-AF0D-154F91B4720D}</ProjectGuid>
+    <ProjectGuid>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Nexon.CSO.ModelDecryptor</RootNamespace>
     <AssemblyName>ModelDecryptor</AssemblyName>
@@ -12,7 +12,6 @@
     <FileAlignment>512</FileAlignment>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>Nexon.CSO.ModelDecryptor.Program</StartupObject>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,7 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +31,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -66,12 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSOToolLib\CSOToolLib.csproj">
-      <Project>{5829116c-4efd-40f9-af0d-154f91b4720a}</Project>
+      <Project>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</Project>
       <Name>CSOToolLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1090,7 +1090,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 				num--;
 				byte[] array = this.block;
 				int num3 = i + 1;
-				array[num3] ^= (byte)(((num == 1) ? 1 : 0));
+				array[num3] ^= ((num == 1) ? 1 : 0);
 				byte[] array2 = this.block;
 				int num4 = i + 1;
 				array2[num4] &= byte.MaxValue;
@@ -1474,7 +1474,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 					array[num5] = num6;
 					num++;
 					array3[num4] = (array3[num8] = num);
-					array2[num] = ((int)(((long)array2[num4] & (long)((ulong)0xffffff00)) + ((long)array2[num8] & (long)((ulong)0xffffff00))) | 1 + (((array2[num4] & 255) > (array2[num8] & 255)) ? (array2[num4] & 255) : (array2[num8] & 255)));
+					array2[num] = ((int)(((long)array2[num4] & (long)((ulong)-256)) + ((long)array2[num8] & (long)((ulong)-256))) | 1 + (((array2[num4] & 255) > (array2[num8] & 255)) ? (array2[num4] & 255) : (array2[num8] & 255)));
 					array3[num] = -1;
 					j++;
 					array[j] = num;

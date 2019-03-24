@@ -22,7 +22,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			for (int i = inputOffset; i < inputOffset + inputCount; i++)
 			{
 				byte ch = inputBuffer[i];
-				outputBuffer[outputOffset++] = (byte)(inputBuffer[i] ^ base.TransformByte());
+				outputBuffer[outputOffset++] = (inputBuffer[i] ^ base.TransformByte());
 				base.UpdateKeys(ch);
 			}
 			return inputCount;

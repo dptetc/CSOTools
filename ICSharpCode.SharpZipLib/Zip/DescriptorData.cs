@@ -36,7 +36,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 			set
 			{
-				this.crc = (value & 0xffffffff);
+				this.crc = (value & (long)((ulong)-1));
 			}
 		}
 

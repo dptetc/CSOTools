@@ -18,7 +18,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.externalFileAttributes = -1;
 			this.method = CompressionMethod.Deflated;
 			this.zipFileIndex = -1L;
-			//base..ctor();
+			base..ctor();
 			if (name == null)
 			{
 				throw new ArgumentNullException("name");
@@ -44,7 +44,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.externalFileAttributes = -1;
 			this.method = CompressionMethod.Deflated;
 			this.zipFileIndex = -1L;
-			//base..ctor();
+			base..ctor();
 			if (entry == null)
 			{
 				throw new ArgumentNullException("entry");
@@ -280,7 +280,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 					{
 						num += 12UL;
 					}
-					flag = ((this.size >= uint.MaxValue) || num >= uint.MaxValue && (this.versionToExtract == 0 || this.versionToExtract >= 45));
+					flag = ((this.size >= (ulong)-1 || num >= (ulong)-1) && (this.versionToExtract == 0 || this.versionToExtract >= 45));
 				}
 				return flag;
 			}
@@ -290,7 +290,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		{
 			get
 			{
-				return this.LocalHeaderRequiresZip64 || this.offset >= uint.MaxValue;
+				return this.LocalHeaderRequiresZip64 || this.offset >= (long)((ulong)-1);
 			}
 		}
 
@@ -403,7 +403,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 				{
 					return -1L;
 				}
-				return (long)((ulong)this.crc & 0xffffffffL);
+				return (long)((ulong)this.crc & (ulong)-1);
 			}
 			set
 			{
@@ -468,20 +468,20 @@ namespace ICSharpCode.SharpZipLib.Zip
 				{
 					throw new ZipException("Extra data extended Zip64 information length is invalid");
 				}
-				if (localHeader || this.size == uint.MaxValue)
+				if (localHeader || this.size == (ulong)-1)
 				{
 					this.size = (ulong)zipExtraData.ReadLong();
 				}
-				if (localHeader || this.compressedSize == uint.MaxValue)
+				if (localHeader || this.compressedSize == (ulong)-1)
 				{
 					this.compressedSize = (ulong)zipExtraData.ReadLong();
 				}
-				if (!localHeader && this.offset == (long)uint.MaxValue)
+				if (!localHeader && this.offset == (long)((ulong)-1))
 				{
 					this.offset = zipExtraData.ReadLong();
 				}
 			}
-			else if ((this.versionToExtract & 255) >= 45 && (this.size == uint.MaxValue || this.compressedSize == uint.MaxValue))
+			else if ((this.versionToExtract & 255) >= 45 && (this.size == (ulong)-1 || this.compressedSize == (ulong)-1))
 			{
 				throw new ZipException("Zip64 Extended information required but is missing.");
 			}

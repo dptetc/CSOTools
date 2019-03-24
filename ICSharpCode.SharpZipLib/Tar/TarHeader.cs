@@ -526,8 +526,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 					{
 						break;
 					}
-                    buffer[offset + i] = (byte)((byte)'0' + (byte)(num & 7));
-                    num >>= 3;
+					buffer[offset + i] = 48 + (byte)(num & 7L);
+					num >>= 3;
 					i--;
 				}
 			}

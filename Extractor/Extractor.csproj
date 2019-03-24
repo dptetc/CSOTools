@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5829116C-4EFD-40F9-AF0D-154F91B4720B}</ProjectGuid>
+    <ProjectGuid>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Nexon.CSO.Extractor</RootNamespace>
     <AssemblyName>Extractor</AssemblyName>
@@ -12,7 +12,6 @@
     <FileAlignment>512</FileAlignment>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>Nexon.CSO.Extractor.Program</StartupObject>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,7 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +31,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -51,12 +48,8 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="FilesEventArgs.cs" />
-    <Compile Include="FilesListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FolderTreeView.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="FilesListView.cs" />
+    <Compile Include="FolderTreeView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,9 +57,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="PathLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PathLabel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.cs" />
@@ -92,7 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSOToolLib\CSOToolLib.csproj">
-      <Project>{5829116c-4efd-40f9-af0d-154f91b4720a}</Project>
+      <Project>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</Project>
       <Name>CSOToolLib</Name>
     </ProjectReference>
   </ItemGroup>
